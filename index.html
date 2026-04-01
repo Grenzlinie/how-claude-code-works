@@ -20,6 +20,10 @@
     .markdown-section table { display: table; width: 100%; }
     .cover-main { max-width: 600px; }
     .cover-main blockquote { font-size: 1em; color: #666; }
+    /* Mermaid 图表约束 */
+    .mermaid { overflow-x: auto; max-width: 100%; }
+    .mermaid svg { max-width: 100%; height: auto; font-size: 14px; }
+    .mermaid .nodeLabel { white-space: normal; max-width: 150px; word-break: break-all; }
   </style>
 </head>
 <body>
@@ -64,7 +68,7 @@
   <!-- Mermaid -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
-    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    mermaid.initialize({ startOnLoad: false, theme: 'default', flowchart: { htmlLabels: true, nodeSpacing: 30, rankSpacing: 40, wrappingWidth: 140 }, themeVariables: { fontSize: '13px' } });
     // Hook into Docsify lifecycle to render mermaid after each page load
     window.$docsify.plugins = [
       function(hook) {
