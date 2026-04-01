@@ -24,9 +24,9 @@ Anthropic 开源（x）了这份源码。**但 50 万行代码，从哪里开始
 
 我和Claude Code加班从源码中提炼出 **12 篇专题文档**（共33.8w字符），覆盖了从核心循环到安全防护的每一个关键设计决策。不管你是想造自己的 AI Agent，还是想更深入地理解和使用 Claude Code，这里都是最短路径（应该？就算不是最短的，我也会不断更新这个项目）。
 
-## 系统架构
+<img alt="在线阅读文档网站截图" src="./assets/architecture.png" width="800" />
 
-<img alt="架构总览" src="./assets/architecture.png" width="800" />
+## 系统架构
 
 ```mermaid
 graph TB
