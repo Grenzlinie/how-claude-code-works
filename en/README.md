@@ -8,7 +8,7 @@
 [![TypeScript](https://img.shields.io/badge/Source-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://github.com/anthropics/claude-code)
 [![Docs](https://img.shields.io/badge/Docs-12_chapters-orange?style=flat-square)](#deep-dive-topics)
 
-> Want to build one yourself? Check out the companion project **[Claude Code From Scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** — 1300 lines of TypeScript, 8 step-by-step tutorial chapters, build your own Claude Code from scratch
+> Want to build one yourself? Check out the companion project **[Claude Code From Scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** — ~3000 lines of TypeScript, 11 step-by-step tutorial chapters, build your own Claude Code from scratch
 
 ---
 
@@ -166,7 +166,7 @@ To prevent conflicts from multiple Agents modifying the same file simultaneously
 → Read in order: [Agent Loop](/en/docs/02-agent-loop.md) → [Context Engineering](/en/docs/03-context-engineering.md) → [Tool System](/en/docs/04-tool-system.md)
 
 **Want to build your own AI Agent?**
-→ First read [Minimal Essential Components](/en/docs/12-minimal-components.md), then follow the 8-chapter tutorial in **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** to build it hands-on — 1300 lines of code, each step explained against the source code
+→ First read [Minimal Essential Components](/en/docs/12-minimal-components.md), then follow the 11-chapter tutorial in **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** to build it hands-on — ~3000 lines of code, each step explained against the source code
 
 **Want to customize Claude Code?**
 → Read [Hooks & Extensibility](/en/docs/06-hooks-extensibility.md) + [Memory System](/en/docs/08-memory-system.md) + [Skills System](/en/docs/09-skills-system.md)

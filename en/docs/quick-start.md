@@ -270,7 +270,7 @@ After reading the above, you might feel that building a coding agent is an extre
 6. **Edit Strategy** — search-and-replace precise editing
 7. **CLI UX** — readline interaction, streaming output
 
-A runnable minimal version can be implemented in ~1300 lines of code. Claude Code's 512K+ lines cover production-grade requirements: compression system, security verification, MCP integration, multi-Agent coordination, memory system, and more. The gap from 1300 lines to 512K lines is the engineering distance between "it runs" and "it's production-ready."
+A runnable minimal version can be implemented in ~3000 lines of code (including advanced capabilities such as memory, skills, multi-Agent, and permission rules). Claude Code's 512K+ lines cover production-grade requirements: Hooks system, Coordinator/Swarm multi-Agent modes, MCP integration, OAuth authentication, and more. The gap from 3000 lines to 512K lines is the engineering distance between "feature-complete" and "enterprise-grade production."
 
 If you want to get hands-on, you can follow our step-by-step tutorial to build from scratch: [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)
 

@@ -11,7 +11,7 @@ Fred Brooks distinguished between **essential complexity** and **accidental comp
 - **Essential complexity**: Looping model calls, executing tools, managing context -- these 7 components are problems that any coding agent must solve
 - **Accidental complexity**: MCP protocol integration, Vim mode, OSC 8 hyperlinks, OAuth authentication -- these are requirements driven by production environments and user experience
 
-The [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch) project is built precisely around this idea: implementing a fully functional coding agent with ~1300 lines of code and 7 source files. The approach of this chapter is -- **starting from this minimal implementation, tracing back to the Claude Code production code component by component**, understanding what problem each layer of complexity exists to solve.
+The [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch) project is built precisely around this idea: implementing a fully functional coding agent with ~3000 lines of code and 11 source files (including advanced capabilities such as memory, skills, multi-Agent, and permission rules). The approach of this chapter is -- **starting from this minimal implementation, tracing back to the Claude Code production code component by component**, understanding what problem each layer of complexity exists to solve.
 
 **Reading guide**:
 
@@ -927,9 +927,9 @@ Tools: `read_file`, `write_file`, `run_shell` -- just these three form a complet
 
 ## 12.4 The claude-code-from-scratch Project
 
-The [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch) project provides a runnable minimal implementation (~1300 lines of core code) to help you:
+The [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch) project provides a runnable minimal implementation (~3000 lines of core code) to help you:
 
-1. **Understand core mechanisms**: Without being overwhelmed by 512K lines of code, focus on the 7 essential components
+1. **Understand core mechanisms**: Without being overwhelmed by 512K lines of code, focus on the 11 essential components
 2. **Hands-on experimentation**: Modify loop logic, add new tools, adjust system prompts
 3. **Learn design decisions**: Understand why each component exists and why it's implemented this way
 4. **Progressive building**: Gradually add features from the minimal version, experiencing the value of each layer of complexity
@@ -980,4 +980,4 @@ The biggest misconception in building a coding agent is thinking "writing a good
 
 ---
 
-> **Hands-on Practice**: [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch) is the complete implementation of this chapter's "minimal necessary components" philosophy -- ~1,300 lines of TypeScript, covering the Agent loop, 6 tools, system prompts, streaming output, and basic permission control. Run with `npm run build && npm start`.
+> **Hands-on Practice**: [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch) is the complete implementation of this chapter's "minimal necessary components" philosophy -- ~3,000 lines of TypeScript, covering the Agent loop, tools, system prompts, streaming output, memory, skills, multi-Agent, and permission rules. Run with `npm run build && npm start`.

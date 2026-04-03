@@ -20,6 +20,34 @@
     .markdown-section table { display: table; width: 100%; }
     .cover-main { max-width: 600px; }
     .cover-main blockquote { font-size: 1em; color: #666; }
+    /* Language switcher button */
+    .lang-switch-btn {
+      position: fixed;
+      top: 12px;
+      right: 20px;
+      z-index: 999;
+      padding: 6px 16px;
+      border: 1.5px solid #7c5cfc;
+      border-radius: 20px;
+      background: #fff;
+      color: #7c5cfc;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lang-switch-btn:hover {
+      background: #7c5cfc;
+      color: #fff;
+    }
+    .lang-switch-btn::before {
+      content: '🌐';
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -29,7 +57,6 @@
       name: 'How Claude Code Works',
       repo: 'https://github.com/Windy3f3f3f3f/how-claude-code-works',
       loadSidebar: true,
-      loadNavbar: true,
       subMaxLevel: 0,
       auto2top: true,
       search: {
@@ -42,7 +69,6 @@
       alias: {
         '/en/(.*)': '/en/$1',
         '/en/_sidebar.md': '/en/_sidebar.md',
-        '/en/_navbar.md': '/en/_navbar.md',
       },
       pagination: {
         previousText: '上一篇',
@@ -72,12 +98,42 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({ startOnLoad: false, theme: 'default' });
-    // Hook into Docsify lifecycle to render mermaid after each page load
-    window.$docsify.plugins = [
+    // Language switcher plugin — context-aware button
+    window.$docsify.plugins = (window.$docsify.plugins || []).concat([
       function(hook) {
-        hook.afterEach(function(html) {
-          return html;
+        hook.doneEach(function() {
+          // Remove existing button if any
+          var old = document.getElementById('lang-switch');
+          if (old) old.remove();
+
+          var hash = location.hash || '#/';
+          var path = hash.slice(1); // e.g. "/docs/03-..." or "/en/docs/03-..."
+          var isEn = path.startsWith('/en/') || path === '/en';
+          var targetPath, label;
+
+          if (isEn) {
+            // Currently English → switch to Chinese
+            label = '中文';
+            targetPath = path.replace(/^\/en\/?/, '/') || '/';
+          } else {
+            // Currently Chinese → switch to English
+            label = 'English';
+            if (path === '/' || path === '') {
+              targetPath = '/en/';
+            } else {
+              targetPath = '/en' + path;
+            }
+          }
+
+          var btn = document.createElement('a');
+          btn.id = 'lang-switch';
+          btn.className = 'lang-switch-btn';
+          btn.href = '#' + targetPath;
+          btn.textContent = label;
+          document.body.appendChild(btn);
         });
+
+        // Mermaid rendering
         hook.doneEach(function() {
           document.querySelectorAll('.mermaid').forEach(function(el) {
             if (el.getAttribute('data-processed')) return;
@@ -94,7 +150,7 @@
           });
         });
       }
-    ];
+    ]);
   </script>
   <!-- Code highlight -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
