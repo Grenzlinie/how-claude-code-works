@@ -674,4 +674,4 @@ flowchart TD
 
 > **动手实践**：尝试在 `.claude/skills/` 目录下创建一个自定义技能。从最简单的 inline 技能开始——只需要一个 `SKILL.md` 文件。观察它如何出现在 `/` 补全列表中，以及模型如何根据 `when_to_use` 自动触发它。
 
-上一章：[记忆系统](./08-memory-system.md) | 下一章：[权限与安全](./10-permission-security.md)
+上一章：[记忆系统](./08-memory-system.md) | 下一章：[Plan 模式](./10-plan-mode.md)

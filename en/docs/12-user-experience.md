@@ -1,8 +1,8 @@
-# Chapter 11: User Experience Design
+# Chapter 13: User Experience Design
 
 > Good usability = Model capability × Interaction design × Engineering constraints
 
-## 11.1 Design Philosophy
+## 12.1 Design Philosophy
 
 Every Code Agent faces a core UX contradiction: **the tension between autonomy and trust**.
 
@@ -16,7 +16,7 @@ Claude Code found a precise balance point between the two: **Observable Autonomy
 
 This philosophy can be summarized in one sentence: **Trust but verify in real time** — give the Agent full freedom of action, but make every operation a glass box, not a black box.
 
-## 11.2 Ink/React Terminal UI
+## 12.2 Ink/React Terminal UI
 
 Claude Code uses a **custom-built Ink terminal renderer** (based on React), with the core module `src/ink/ink.tsx` reaching 251KB. This isn't simple console.log output — it's a complete React application running in the terminal.
 
@@ -130,7 +130,7 @@ No "blink coordinator" is needed to synchronize multiple components — they rea
 
 Taking `useInput()` as an example, it handles raw keycode parsing (including Escape sequences and Kitty extended key codes) and dispatches keyboard events to the correct handler based on the current mode (Normal/Vim/search). Developers only need to care about "what key was pressed" and "what mode we're in," without needing to understand the details of the underlying terminal protocol.
 
-## 11.3 Streaming Output
+## 12.3 Streaming Output
 
 Claude Code's streaming output isn't "wait until it's done, then display" — it's **truly real-time streaming rendering**.
 
@@ -316,7 +316,7 @@ An important optimization enabled by streaming output is: **tool execution doesn
 
 In real-world scenarios, model streaming output typically takes 5-30 seconds, while tool execution (such as file reading, searching) usually takes less than 1 second. Through parallel execution, tool latency is completely "hidden" within the model's output time, and users barely notice the tool execution wait. This is also why Claude Code feels much faster than "serial execution" Agents in multi-tool-call scenarios.
 
-## 11.4 Tool Call Transparency
+## 12.4 Tool Call Transparency
 
 Every tool call is displayed in real time through React components. Each Tool interface defines its own rendering methods:
 
@@ -384,7 +384,7 @@ Tools can emit progress events during execution via `yield { type: 'progress', c
 
 This means when a user runs `npm install`, instead of waiting 30 seconds to see all output at once, they see each line of package installation logs in real time. This immediate feedback dramatically reduces the anxiety of "What is the Agent doing? Why is it taking so long?"
 
-## 11.5 Error Handling and Recovery
+## 12.5 Error Handling and Recovery
 
 Claude Code's error handling strategy is "recover automatically whenever possible; only tell the user when there's truly no alternative." But this isn't simply "retry everything" — it makes nuanced judgments based on error type, query source, and system state.
 
@@ -509,7 +509,7 @@ Heartbeat: yield a SystemAPIErrorMessage every 30 seconds
   Purpose: Prevent the host environment from marking the session as idle and terminating it
 ```
 
-## 11.6 Keyboard Shortcuts
+## 12.6 Keyboard Shortcuts
 
 Claude Code supports a rich set of keyboard shortcuts, covering the full range from basic operations to advanced features:
 
@@ -552,7 +552,7 @@ The key binding system supports three key features:
 - **Context Conditions (`when`)**: The `when` field restricts the scope in which a shortcut takes effect, such as `inputFocused` (when the input box is focused), `permissionDialogOpen` (when the permission dialog is open), etc.
 - **Extended Key Codes**: Thanks to the Kitty keyboard protocol, Claude Code can distinguish key combinations that traditional terminals cannot differentiate (e.g., Ctrl+Shift+A vs Ctrl+A), providing more granular shortcut support.
 
-## 11.7 Vim Mode
+## 12.7 Vim Mode
 
 `src/vim/` implements Vim key bindings for terminal input (approximately 40KB total), allowing users accustomed to Vim to use familiar editing modes in Claude Code's input box.
 
@@ -613,7 +613,7 @@ Text objects are Vim's "nouns," defining the scope of an operation. They come in
 
 Operators, motions, and text objects can be freely combined to form a powerful editing grammar: `diw` = delete inside word, `ci"` = change content inside quotes, `ya{` = yank inside braces (including the braces). This compositional design means a small number of basic elements can cover a vast number of editing scenarios, making it feel especially natural for Vim users when editing long prompts.
 
-## 11.8 REPL Main Interface
+## 12.8 REPL Main Interface
 
 `src/screens/REPL.tsx` (895KB) is the primary interaction interface of the entire application. It integrates:
 
@@ -676,7 +676,7 @@ Claude Code has complete session recovery capabilities, ensuring that unexpected
 
 This means that even if Claude Code crashes, the terminal closes unexpectedly, or the system restarts, users will not lose the context of a long-running conversation.
 
-## 11.9 Terminal Protocol Support
+## 12.9 Terminal Protocol Support
 
 `src/ink/termio/` handles low-level terminal protocols, supporting multiple advanced features:
 
@@ -711,7 +711,7 @@ Raw terminal bytes → ANSI Parser parsing → Structured events (keystrokes, mo
 
 This architecture transforms the terminal's low-level byte stream into high-level semantic events, so React components don't need to concern themselves with terminal protocol details. The ANSI Parser is responsible for recognizing various escape sequences (CSI sequences for keyboard and cursor, OSC sequences for hyperlinks and clipboard, SGR sequences for styling), converting them into typed event objects, and then distributing them to the appropriate components through React's event system.
 
-## 11.10 Diagnostics Interface
+## 12.10 Diagnostics Interface
 
 `src/screens/Doctor.tsx` (73KB) provides system diagnostics functionality:
 
@@ -729,7 +729,7 @@ This architecture transforms the terminal's low-level byte stream into high-leve
 └─────────────────────────────────────┘
 ```
 
-## 11.11 Cost and Usage Display
+## 12.11 Cost and Usage Display
 
 ### Actual Display Format
 
@@ -774,7 +774,7 @@ Budget exceeded → Display cost spent and terminate gracefully (will not abrupt
 
 When rate limiting is encountered, Claude Code displays the estimated wait time on the interface and automatically retries. When the user's configured budget is about to be exhausted, the system terminates gracefully after the current operation completes, rather than abruptly interrupting an in-progress tool call or model output.
 
-## 11.12 Search and Text Selection
+## 12.12 Search and Text Selection
 
 ### Search Highlighting
 
@@ -808,7 +808,7 @@ Text selection in a terminal is far more complex than in GUI applications, becau
 
 Hit Testing is the key technology for text selection: each cell in the Screen Buffer stores not only character and style information but also records which React component it originated from. When the user clicks or drags the mouse, the system precisely determines the selection range through the chain of `mouse coordinates → Screen Buffer cell → source component → text offset position`. This enables text selection precision in the terminal comparable to GUI applications.
 
-## 11.13 Design Insights
+## 12.13 Design Insights
 
 1. **React in Terminal is not a toy**: The 251KB custom Ink renderer proves that terminal UI can achieve web-level interactive experiences. But the real value is not in the rendering itself, but in **development efficiency** — new features (Shimmer animation, virtual scrolling, search highlighting) can be composed from existing React primitives without touching the rendering pipeline.
 
@@ -826,4 +826,4 @@ Hit Testing is the key technology for text selection: each cell in the Screen Bu
 
 ---
 
-Previous chapter: [Permission and Security](/en/docs/10-permission-security.md) | Next chapter: [Minimal Required Components](/en/docs/12-minimal-components.md)
+Previous chapter: [Permission and Security](/en/docs/11-permission-security.md) | Next chapter: [Minimal Required Components](/en/docs/13-minimal-components.md)

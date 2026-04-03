@@ -13,13 +13,14 @@
   - [7. 多 Agent 架构](/docs/07-multi-agent.md)
   - [8. 记忆系统](/docs/08-memory-system.md)
   - [9. 技能系统](/docs/09-skills-system.md)
+  - [10. Plan 模式](/docs/10-plan-mode.md)
 
 - **基础设施**
-  - [10. 权限与安全](/docs/10-permission-security.md)
-  - [11. 用户体验设计](/docs/11-user-experience.md)
+  - [11. 权限与安全](/docs/11-permission-security.md)
+  - [12. 用户体验设计](/docs/12-user-experience.md)
 
 - **构建你自己的**
-  - [12. 最小必要组件](/docs/12-minimal-components.md)
+  - [13. 最小必要组件](/docs/13-minimal-components.md)
 
 - **参考**
   - [速查参考](/docs/reference.md)

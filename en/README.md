@@ -134,9 +134,9 @@ To prevent conflicts from multiple Agents modifying the same file simultaneously
 | 7 | [Multi-Agent Architecture](/en/docs/07-multi-agent.md) | Sub-Agent 4 execution modes and Worktree isolation, coordinator pure orchestration design, Swarm 3 execution backends and mailbox communication |
 | 8 | [Memory System](/en/docs/08-memory-system.md) | 4 memory types and closed taxonomy, Sonnet semantic recall and async prefetch, background memory extraction Agent, memory drift defense, team memory |
 | 9 | [Skills System](/en/docs/09-skills-system.md) | 6-layer skill sources and priority, lazy loading and token budget allocation, Inline/Fork dual execution modes, whitelist permission model, skill retention after compression |
-| 10 | [Permissions & Security](/en/docs/10-permission-security.md) | 5-layer defense-in-depth system, tree-sitter AST analysis + 23 security checks, race confirmation mechanism and 200ms anti-misclick |
-| 11 | [User Experience Design](/en/docs/11-user-experience.md) | Custom Ink renderer architecture, Yoga Flexbox layout, virtual scrolling and object pool optimization, Vim mode |
-| 12 | [Minimal Essential Components](/en/docs/12-minimal-components.md) | 7 minimal essential component framework, item-by-item comparison of minimal vs production implementation, evolution path from 500 lines to 500,000 lines |
+| 11 | [Permissions & Security](/en/docs/11-permission-security.md) | 5-layer defense-in-depth system, tree-sitter AST analysis + 23 security checks, race confirmation mechanism and 200ms anti-misclick |
+| 12 | [User Experience Design](/en/docs/12-user-experience.md) | Custom Ink renderer architecture, Yoga Flexbox layout, virtual scrolling and object pool optimization, Vim mode |
+| 13 | [Minimal Essential Components](/en/docs/13-minimal-components.md) | 7 minimal essential component framework, item-by-item comparison of minimal vs production implementation, evolution path from 500 lines to 500,000 lines |
 
 ## Who Should Read This?
 
@@ -166,13 +166,13 @@ To prevent conflicts from multiple Agents modifying the same file simultaneously
 → Read in order: [Agent Loop](/en/docs/02-agent-loop.md) → [Context Engineering](/en/docs/03-context-engineering.md) → [Tool System](/en/docs/04-tool-system.md)
 
 **Want to build your own AI Agent?**
-→ First read [Minimal Essential Components](/en/docs/12-minimal-components.md), then follow the 11-chapter tutorial in **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** to build it hands-on — ~3000 lines of code, each step explained against the source code
+→ First read [Minimal Essential Components](/en/docs/13-minimal-components.md), then follow the 11-chapter tutorial in **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** to build it hands-on — ~3000 lines of code, each step explained against the source code
 
 **Want to customize Claude Code?**
 → Read [Hooks & Extensibility](/en/docs/06-hooks-extensibility.md) + [Memory System](/en/docs/08-memory-system.md) + [Skills System](/en/docs/09-skills-system.md)
 
 **Concerned about security?**
-→ Read [Permissions & Security](/en/docs/10-permission-security.md) + [Code Editing Strategy](/en/docs/05-code-editing-strategy.md)
+→ Read [Permissions & Security](/en/docs/11-permission-security.md) + [Code Editing Strategy](/en/docs/05-code-editing-strategy.md)
 
 ## License
 

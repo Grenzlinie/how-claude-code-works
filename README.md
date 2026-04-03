@@ -150,9 +150,10 @@ Claude Code 支持三种多 Agent 模式：
 | 7 | [多 Agent 架构](./docs/07-multi-agent.md) | 子 Agent 4 种执行模式与 Worktree 隔离、协调器纯编排设计、Swarm 3 种执行后端与信箱通信 |
 | 8 | [记忆系统](./docs/08-memory-system.md) | 4 种记忆类型与封闭分类法、Sonnet 语义召回与异步预取、后台记忆提取 Agent、记忆漂移防御、团队记忆 |
 | 9 | [技能系统](./docs/09-skills-system.md) | 6 层技能来源与优先级、懒加载与 Token 预算分配、Inline/Fork 双执行模式、白名单权限模型、压缩后技能保留 |
-| 10 | [权限与安全](./docs/10-permission-security.md) | 5 层纵深防御体系、tree-sitter AST 分析 + 23 项安全检查、竞速确认机制与 200ms 防误触 |
-| 11 | [用户体验设计](./docs/11-user-experience.md) | 自研 Ink 渲染器架构、Yoga Flexbox 布局、虚拟滚动与对象池优化、Vim 模式 |
-| 12 | [最小必要组件](./docs/12-minimal-components.md) | 7 个最小必要组件框架、最小实现 vs 生产级实现的逐项对照、从 500 行到 50 万行的演进路线 |
+| 10 | [Plan 模式](./docs/10-plan-mode.md) | 两条进入路径、5 阶段与迭代双工作流、附件节流机制、Phase 4 四种实验变体、计划文件管理与恢复、审批与权限恢复 |
+| 11 | [权限与安全](./docs/11-permission-security.md) | 5 层纵深防御体系、tree-sitter AST 分析 + 23 项安全检查、竞速确认机制与 200ms 防误触 |
+| 12 | [用户体验设计](./docs/12-user-experience.md) | 自研 Ink 渲染器架构、Yoga Flexbox 布局、虚拟滚动与对象池优化、Vim 模式 |
+| 13 | [最小必要组件](./docs/13-minimal-components.md) | 7 个最小必要组件框架、最小实现 vs 生产级实现的逐项对照、从 500 行到 50 万行的演进路线 |
 
 ## 🎯 谁应该读这个？
 
@@ -182,13 +183,13 @@ Claude Code 支持三种多 Agent 模式：
 → 按顺序读 [主循环](./docs/02-agent-loop.md) → [上下文工程](./docs/03-context-engineering.md) → [工具系统](./docs/04-tool-system.md)
 
 **想自己造一个 AI Agent？**
-→ 先读 [最小必要组件](./docs/12-minimal-components.md)，然后跟着 **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** 的 11 章教程动手实现——~3000 行代码，每一步都对照源码讲解
+→ 先读 [最小必要组件](./docs/13-minimal-components.md)，然后跟着 **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** 的 11 章教程动手实现——~3000 行代码，每一步都对照源码讲解
 
 **想定制 Claude Code？**
 → 读 [Hooks 与可扩展性](./docs/06-hooks-extensibility.md) + [记忆系统](./docs/08-memory-system.md) + [技能系统](./docs/09-skills-system.md)
 
 **关注安全？**
-→ 读 [权限与安全](./docs/10-permission-security.md) + [代码编辑策略](./docs/05-code-editing-strategy.md)
+→ 读 [权限与安全](./docs/11-permission-security.md) + [代码编辑策略](./docs/05-code-editing-strategy.md)
 
 ## 🤝 贡献
 

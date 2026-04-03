@@ -1,8 +1,8 @@
-# Chapter 10: Permissions and Security
+# Chapter 11: Permissions and Security
 
 > Claude Code executes code in the user's real environment — security is not an optional add-on, but a cornerstone of the architecture.
 
-## 10.1 Defense in Depth Architecture
+## 11.1 Defense in Depth Architecture
 
 Claude Code adopts a **Defense in Depth** strategy. Multiple independent security layers collectively protect the user's environment — even if one layer is bypassed, the others remain effective.
 
@@ -34,7 +34,7 @@ graph TD
 
 > Why not replace the 7 layers with a single unified permission check? Because the core assumption of defense in depth is "every layer can potentially be bypassed." If there were only tool-level checks, a clever command injection could bypass all security mechanisms. In the 7-layer architecture, even if AST semantic analysis is bypassed, path constraints and user confirmation can still intercept the threat.
 
-## 10.2 Permission Modes
+## 11.2 Permission Modes
 
 Claude Code defines 5 external permission modes and 2 internal modes:
 
@@ -90,7 +90,7 @@ The opposite of bypassPermissions: converts all decisions that would "ask the us
 
 **`bubble` Mode**: Exclusive to the multi-Agent coordinator (Coordinator). Worker Agents use this mode to "bubble" undecidable permission requests up to the coordinator level for handling, avoiding permission decision conflicts between Workers.
 
-## 10.3 Permission Rule System
+## 11.3 Permission Rule System
 
 Permission rules are the foundational data structure of the entire permission system. Understanding rule format, matching methods, and priority is a prerequisite for understanding all subsequent security mechanisms.
 
@@ -198,7 +198,7 @@ This priority design meets enterprise scenario requirements: **enterprise policy
 
 When the model calls `Bash(npm test --coverage)`, the system matches the allow rule `Bash(npm test:*)` and auto-approves; when it calls `Bash(npm publish)`, it matches the ask rule, and a confirmation dialog pops up even in bypassPermissions mode.
 
-## 10.4 Complete Permission Decision Flow
+## 11.4 Complete Permission Decision Flow
 
 Now that we understand the rule system, let's look at the complete permission decision flow. Every tool call passes through the `hasPermissionsToUseToolInner` function, which is the core dispatcher of the entire permission system.
 
@@ -245,7 +245,7 @@ Let's walk through this flow step by step:
 
 > Source: `src/utils/permissions/permissions.ts:1158-1319`, function `hasPermissionsToUseToolInner`
 
-## 10.5 Three Permission Handlers
+## 11.5 Three Permission Handlers
 
 When the permission decision flow reaches an ask conclusion, how is the confirmation dialog presented to the user? Different execution contexts use different permission handlers:
 
@@ -372,7 +372,7 @@ SwarmWorkerHandler is used in sub-Agent (Swarm Worker) scenarios. Its permission
 - **Restricted tool set**: Sub-Agents can only use the subset of tools explicitly authorized by the parent Agent
 - **No direct user interaction**: Sub-Agents cannot pop up confirmation dialogs; unauthorized operations are directly denied
 
-## 10.6 Multi-layer Security Verification for Bash Commands
+## 11.6 Multi-layer Security Verification for Bash Commands
 
 BashTool has the largest attack surface among all tools — it can execute arbitrary Shell commands, so it has the strictest security verification system.
 
@@ -551,7 +551,7 @@ const MAX_SUGGESTED_RULES_FOR_COMPOUND = 5
 // Compound commands generate at most 5 auto-suggested permission rules, preventing rule explosion
 ```
 
-## 10.7 Dangerous File and Directory Protection
+## 11.7 Dangerous File and Directory Protection
 
 Beyond Bash command security checks, file editing tools (`Edit`, `Write`, `NotebookEdit`) have their own independent security mechanisms. The system maintains a list of dangerous files and directories—these paths require user confirmation even in bypassPermissions mode.
 
@@ -616,7 +616,7 @@ This prevents accidentally gaining permission to modify the entire `.claude/` di
 
 > Source: `src/utils/permissions/filesystem.ts`
 
-## 10.8 Permission Decision Tracking
+## 11.8 Permission Decision Tracking
 
 Every permission decision is fully recorded for auditing and debugging:
 
@@ -650,7 +650,7 @@ Each tool call has a unique `toolUseID`, and decision records are stored in the 
 
 2. **PermissionDenied Hook**: Triggered when permission is denied, passing denial details to external scripts. Enterprises can use this to implement custom logging, alert notifications, and compliance reports.
 
-## 10.9 Sandbox Design
+## 11.9 Sandbox Design
 
 The sandbox is the most "physical" layer in defense in depth—it restricts the execution environment of commands through OS-level mechanisms, so that even if the code itself is malicious, it cannot exceed the sandbox's boundaries.
 
@@ -706,7 +706,7 @@ The naming of the `dangerouslyDisableSandbox` parameter is intentionally designe
 
 > Source: `src/utils/sandbox/sandbox-adapter.ts`
 
-## 10.10 Path Boundary Protection
+## 11.10 Path Boundary Protection
 
 Path boundary protection ensures that tool operations do not exceed the allowed path scope. This is a seemingly simple but detail-rich security mechanism.
 
@@ -754,7 +754,7 @@ The path extraction logic differs for each command—for example, `cp` needs to 
 
 > Source: `src/tools/BashTool/pathValidation.ts`, `src/utils/permissions/pathValidation.ts`
 
-## 10.11 Prompt Injection Defense
+## 11.11 Prompt Injection Defense
 
 Claude Code defends against prompt injection attacks through multiple mechanisms:
 
@@ -791,7 +791,7 @@ Claude Code uses `<system-reminder>` tags in tool results to inject system-level
 4. **Hook system**: PreToolUse Hook can intercept suspicious tool calls
 5. **Trust Dialog**: First use requires confirming workspace trust, untrusted workspaces disable all custom Hooks
 
-## 10.12 Environment Variable Security
+## 11.12 Environment Variable Security
 
 Bash commands often include environment variable assignment prefixes (e.g., `NODE_ENV=production npm start`). The permission system needs to handle these variables correctly, otherwise two problems arise:
 
@@ -833,7 +833,7 @@ Design principle: **If a variable can affect code execution or library loading, 
 
 > Source: `src/tools/BashTool/bashPermissions.ts`, `stripSafeWrappers` and `SAFE_ENV_VARS` related code
 
-## 10.13 Denial Tracking and Degradation
+## 11.13 Denial Tracking and Degradation
 
 When the model's tool calls are repeatedly denied, Claude Code tracks the denial count and triggers a degradation strategy:
 
@@ -861,7 +861,7 @@ This mechanism addresses a common problem: the model may not understand why a ce
 
 > Source: `src/utils/permissions/denialTracking.ts`
 
-## 10.14 PermissionRequest Hook
+## 11.14 PermissionRequest Hook
 
 This is the most powerful security extension point—it can **programmatically approve or deny** tool usage:
 
@@ -937,7 +937,7 @@ When a Hook approves an operation, it can simultaneously inject new persistent p
 >
 > `DENIAL_LIMITS = { maxConsecutive: 3, maxTotal: 20 }` (`src/utils/permissions/denialTracking.ts`). This mechanism prevents auto mode (auto mode / headless agents) from falling into infinite denial loops: if the classifier denies the same type of request 3 times consecutively, it indicates that the current task may require human judgment; the 20 total limit prevents the entire session from accumulating too many silent denials. After exceeding the threshold, the system falls back to interactive confirmation (prompting), letting the user intervene in decisions.
 
-## 10.15 Security Design Principles Summary
+## 11.15 Security Design Principles Summary
 
 ```mermaid
 mindmap

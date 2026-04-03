@@ -674,4 +674,4 @@ flowchart TD
 
 > **Hands-on practice**: Try creating a custom skill in the `.claude/skills/` directory. Start with the simplest inline skill — all you need is a `SKILL.md` file. Observe how it appears in the `/` completion list, and how the model automatically triggers it based on `when_to_use`.
 
-Previous chapter: [Memory System](/en/docs/08-memory-system.md) | Next chapter: [Permissions and Security](/en/docs/10-permission-security.md)
+Previous chapter: [Memory System](/en/docs/08-memory-system.md) | Next chapter: [Plan Mode](/en/docs/10-plan-mode.md)

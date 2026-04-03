@@ -13,13 +13,14 @@
   - [7. Multi-Agent Architecture](/en/docs/07-multi-agent.md)
   - [8. Memory System](/en/docs/08-memory-system.md)
   - [9. Skills System](/en/docs/09-skills-system.md)
+  - [10. Plan Mode](/en/docs/10-plan-mode.md)
 
 - **Infrastructure**
-  - [10. Permissions & Security](/en/docs/10-permission-security.md)
-  - [11. User Experience Design](/en/docs/11-user-experience.md)
+  - [11. Permissions & Security](/en/docs/11-permission-security.md)
+  - [12. User Experience Design](/en/docs/12-user-experience.md)
 
 - **Build Your Own**
-  - [12. Minimal Essential Components](/en/docs/12-minimal-components.md)
+  - [13. Minimal Essential Components](/en/docs/13-minimal-components.md)
 
 - **Reference**
   - [Quick Reference](/en/docs/reference.md)

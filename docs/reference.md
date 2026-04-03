@@ -16,7 +16,7 @@
 | **MCP** | Model Context Protocol，外部工具扩展协议，支持 7 种传输机制 | [4.9 节](./04-tool-system.md#_49-mcp-工具集成) |
 | **ToolSearch** | 延迟加载机制，50+ 工具中只按需加载，减少每次 API 调用的 prompt 体积 | [4.10 节](./04-tool-system.md#_410-工具搜索与延迟加载) |
 | **search-and-replace** | FileEditTool 的编辑策略，要求 old_string 在文件中唯一匹配 | [第 5 章](./05-code-editing-strategy.md) |
-| **纵深防御** | 7 层独立安全检查，任一层被绕过不致命 | [第 10 章](./10-permission-security.md) |
+| **纵深防御** | 7 层独立安全检查，任一层被绕过不致命 | [第 11 章](./11-permission-security.md) |
 | **Plan 模式** | 两阶段执行：只读探索 → 用户审批 → 可写实施 | [7.6 节](./07-multi-agent.md#_76-plan-模式两阶段执行) |
 | **协调器模式** | 主 Agent 只编排不执行，通过 Worker 完成实际任务 | [7.3 节](./07-multi-agent.md#_73-协调器模式coordinator) |
 | **Hooks** | 事件驱动扩展机制，在工具执行生命周期的关键节点注入自定义逻辑 | [第 6 章](./06-hooks-extensibility.md) |

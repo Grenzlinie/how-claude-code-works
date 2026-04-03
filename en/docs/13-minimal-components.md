@@ -1,8 +1,8 @@
-# Chapter 12: Minimal Necessary Components
+# Chapter 13: Minimal Necessary Components
 
 > From 512K+ lines of source code to a runnable minimal coding agent -- what do you really need?
 
-## 12.1 Why the "Minimal Necessary" Perspective
+## 13.1 Why the "Minimal Necessary" Perspective
 
 Claude Code is a production-grade system. Its 512K+ lines of code cover everything from OAuth to MCP to Vim mode. If you try to understand the essence of a coding agent by reading all the source code, you will get lost in massive amounts of edge case handling, UI optimization, and platform adaptation code. It is like trying to understand the principles of "flight" by studying the complete blueprints of a Boeing 747 -- what you need is to first understand Bernoulli's equation and the four fundamental forces.
 
@@ -19,7 +19,7 @@ The [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from
 - **12.2.4 - 12.2.6** (File Operations, Shell Execution, Edit Strategy) form the **capability layer** -- giving the agent concrete programming abilities
 - **12.2.7** (CLI UX) is the **interaction layer** -- enabling humans to use this agent
 
-## 12.2 The Seven Minimal Necessary Components
+## 13.2 The Seven Minimal Necessary Components
 
 ```mermaid
 graph TD
@@ -660,7 +660,7 @@ The regex `/\brm\s/` can match this. But what about this?
 eval "$(echo cm0gLXJmIC8= | base64 -d)"
 ```
 
-This is base64-encoded `rm -rf /`, completely undetectable by regex. AST analysis can identify the pattern of `eval` + command substitution and flag it as potentially dangerous (see [Chapter 10: Permissions and Security](/en/docs/10-permission-security.md) for details).
+This is base64-encoded `rm -rf /`, completely undetectable by regex. AST analysis can identify the pattern of `eval` + command substitution and flag it as potentially dangerous (see [Chapter 11: Permissions and Security](/en/docs/11-permission-security.md) for details).
 
 **Command Classification**: Claude Code categorizes commands into six classes: search/read/list/neutral/write/destructive. Read-only categories (search, read, list) can execute without permission. This dramatically reduces the frequency of permission confirmation dialogs -- in a typical programming task, commands like `grep`, `find`, `ls`, `git log` account for over 60% of total invocations. If confirmation were required every time, the user experience would be terrible (this is the "permission fatigue" problem).
 
@@ -869,7 +869,7 @@ The `--resume` flag loads the most recent session, restoring the complete messag
 
 **OSC 8 Hyperlinks**: File paths in the output (like `src/utils/helper.ts:42`) are rendered as terminal hyperlinks. In supported terminals (iTerm2, VSCode terminal, etc.), clicking jumps directly to the corresponding file and line number. This small feature has low implementation cost (a few dozen lines of code) but greatly improves the daily workflow -- users don't need to copy paths and manually open files.
 
-## 12.3 From Minimal to Production: Progressive Enhancement Roadmap
+## 13.3 From Minimal to Production: Progressive Enhancement Roadmap
 
 ```mermaid
 graph LR
@@ -925,7 +925,7 @@ Tools: `read_file`, `write_file`, `run_shell` -- just these three form a complet
 
 **Prompt Caching Optimization**: Carefully arranges the content order of system prompts to maximize API prefix cache hit rates. In high-frequency use scenarios, this can save 30-50% of API costs.
 
-## 12.4 The claude-code-from-scratch Project
+## 13.4 The claude-code-from-scratch Project
 
 The [claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch) project provides a runnable minimal implementation (~3000 lines of core code) to help you:
 
@@ -940,7 +940,7 @@ The project also provides **dual backend support** (Anthropic native + OpenAI-co
 
 For detailed step-by-step tutorials, please refer to the [claude-code-from-scratch documentation](https://github.com/Windy3f3f3f3f/claude-code-from-scratch).
 
-## 12.5 Key Differences Between Minimal and Production Versions
+## 13.5 Key Differences Between Minimal and Production Versions
 
 | Dimension | Minimal Version | Claude Code Production Version |
 |-----------|----------------|-------------------------------|
@@ -960,7 +960,7 @@ For detailed step-by-step tutorials, please refer to the [claude-code-from-scrat
 | Session Management | JSON file persistence | JSONL transcripts + snapshot recovery |
 | Token Tracking | Simple counting | Budget management + cost display + carry-over across compressions |
 
-## 12.6 Core Insights
+## 13.6 Core Insights
 
 The biggest misconception in building a coding agent is thinking "writing a good prompt is enough." In reality:
 

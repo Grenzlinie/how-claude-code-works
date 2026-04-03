@@ -20,7 +20,7 @@ Claude Code is the most widely used AI coding agent today. It understands entire
 
 Anthropic open-sourced this codebase. **But where do you even start with 500K lines of code?**
 
-This project is the answer. We've distilled **12 topic-specific documents** (338K characters total) covering every critical design decision, from the core agent loop to the security architecture. Whether you want to build your own AI agent or deeply understand how Claude Code works, this is the shortest path.
+This project is the answer. We've distilled **13 topic-specific documents** (338K characters total) covering every critical design decision, from the core agent loop to the security architecture. Whether you want to build your own AI agent or deeply understand how Claude Code works, this is the shortest path.
 
 ## System Architecture
 
@@ -144,9 +144,10 @@ To prevent conflicts from multiple agents editing the same files, the system use
 | 7 | [Multi-Agent Architecture](./docs/07-multi-agent.md) | Sub-agent, Coordinator, and Swarm — design tradeoffs of three multi-agent modes |
 | 8 | [Memory System](./docs/08-memory-system.md) | 4 memory types, Sonnet semantic recall, background extraction agent, drift defense |
 | 9 | [Skills System](./docs/09-skills-system.md) | 6 skill sources, lazy loading, inline/fork execution, permission model, post-compaction preservation |
-| 10 | [Permission & Security](./docs/10-permission-security.md) | The complete 5-layer security system, 23 Bash security checks |
-| 11 | [User Experience](./docs/11-user-experience.md) | Why React for terminal UI, streaming output implementation, terminal interaction details |
-| 12 | [Minimal Components](./docs/12-minimal-components.md) | The minimum modules needed for a coding agent, the evolution path from 500 lines to 500K |
+| 10 | [Plan Mode](./docs/10-plan-mode.md) | Two entry paths, 5-phase workflow, attachment throttling, Phase 4 A/B experiments, plan file management, approval and permission restoration |
+| 11 | [Permission & Security](./docs/11-permission-security.md) | The complete 5-layer security system, 23 Bash security checks |
+| 12 | [User Experience](./docs/12-user-experience.md) | Why React for terminal UI, streaming output implementation, terminal interaction details |
+| 13 | [Minimal Components](./docs/13-minimal-components.md) | The minimum modules needed for a coding agent, the evolution path from 500 lines to 500K |
 
 ## Who should read this?
 
@@ -176,13 +177,13 @@ To prevent conflicts from multiple agents editing the same files, the system use
 → Read in order: [Agent Loop](./docs/02-agent-loop.md) → [Context Engineering](./docs/03-context-engineering.md) → [Tool System](./docs/04-tool-system.md)
 
 **Want to build your own AI agent?**
-→ Start with [Minimal Components](./docs/12-minimal-components.md), then follow **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** — 8-chapter hands-on tutorial, 1300 lines of code, every step mapped to the real source
+→ Start with [Minimal Components](./docs/13-minimal-components.md), then follow **[claude-code-from-scratch](https://github.com/Windy3f3f3f3f/claude-code-from-scratch)** — 8-chapter hands-on tutorial, 1300 lines of code, every step mapped to the real source
 
 **Want to customize Claude Code?**
 → Read [Hooks & Extensibility](./docs/06-hooks-extensibility.md) + [Memory System](./docs/08-memory-system.md) + [Skills System](./docs/09-skills-system.md)
 
 **Care about security?**
-→ Read [Permission & Security](./docs/10-permission-security.md) + [Code Editing Strategy](./docs/05-code-editing-strategy.md)
+→ Read [Permission & Security](./docs/11-permission-security.md) + [Code Editing Strategy](./docs/05-code-editing-strategy.md)
 
 ## Contributing
 

@@ -885,7 +885,7 @@ PermissionRequest Hook goes far beyond simple allow/deny:
 
 ### Racing with the Permission System
 
-PermissionRequest Hook participates in the [permission system's racing mechanism](/en/docs/10-permission-security.md) — running concurrently with the UI confirmation dialog and ML classifier, with the first to complete winning.
+PermissionRequest Hook participates in the [permission system's racing mechanism](/en/docs/11-permission-security.md) — running concurrently with the UI confirmation dialog and ML classifier, with the first to complete winning.
 
 ```mermaid
 sequenceDiagram
